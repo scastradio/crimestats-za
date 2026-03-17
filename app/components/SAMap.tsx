@@ -71,7 +71,7 @@ const PROVINCE_LIST = [
   { name: 'Free State', paths: [PATH_FREE_STATE_0], lx: 490, ly: 520, color: '#4a2d5a', hover: '#643d7a' },
   { name: 'Gauteng', paths: [PATH_GAUTENG_0], lx: 596, ly: 320, color: '#5a1a1a', hover: '#7a2424' },
   { name: 'KwaZulu-Natal', paths: [PATH_KWAZULU_NATAL_0], lx: 655, ly: 500, color: '#1a5a4a', hover: '#247a64' },
-  { name: 'Limpopo', paths: [PATH_LIMPOPO_0], lx: 555, ly: 200, color: '#3d4a1a', hover: '#52641a' },
+  { name: 'Limpopo', paths: [PATH_LIMPOPO_0], lx: 555, ly: 230, color: '#3d4a1a', hover: '#52641a' },
   { name: 'Mpumalanga', paths: [PATH_MPUMALANGA_0], lx: 660, ly: 345, color: '#4a3d1a', hover: '#645224' },
   { name: 'North West', paths: [PATH_NORTH_WEST_0], lx: 445, ly: 315, color: '#1a4a5a', hover: '#24647a' },
 ]

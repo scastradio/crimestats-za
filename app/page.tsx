@@ -30,8 +30,9 @@ export default function HomePage() {
   const [totalStations, setTotalStations] = useState(0)
   const [lastUpdated, setLastUpdated] = useState('Q3 2025')
   const [view, setView] = useState<'map' | 'list'>('map')
+  const [allStations, setAllStations] = useState<{code: string; name: string; province: string}[]>([])
 
-  useEffect(() => { loadStats() }, [])
+  useEffect(() => { loadStats(); loadAllStations() }, [])
 
   useEffect(() => {
     if (view === 'list' || province !== 'All') loadStations()
@@ -45,6 +46,12 @@ export default function HomePage() {
     const { data } = await query.limit(100)
     setStations(data || [])
     setLoading(false)
+  }
+
+  async function loadAllStations() {
+    // Load all stations in batches for the alert signup dropdown
+    const { data } = await supabase.from('stations').select('code,name,province').order('province').order('name').limit(1200)
+    setAllStations(data || [])
   }
 
   async function loadStats() {
@@ -221,7 +228,7 @@ export default function HomePage() {
                 className="bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500"
               >
                 <option value="" className="bg-[#1a1a1a]">Select your police station...</option>
-                {stations.map(s => (
+                {allStations.map(s => (
                   <option key={s.code} value={s.code} className="bg-[#1a1a1a]">{s.name} ({s.province})</option>
                 ))}
               </select>

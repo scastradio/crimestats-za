@@ -69,11 +69,11 @@ const PROVINCE_LIST = [
   { name: 'Northern Cape', paths: [PATH_NORTHERN_CAPE_0], lx: 285, ly: 430, color: '#5a3d1a', hover: '#7a5224' },
   { name: 'Western Cape', paths: [PATH_WESTERN_CAPE_0, PATH_WESTERN_CAPE_1, PATH_WESTERN_CAPE_2, PATH_WESTERN_CAPE_3, PATH_WESTERN_CAPE_4, PATH_WESTERN_CAPE_5, PATH_WESTERN_CAPE_6, PATH_WESTERN_CAPE_7, PATH_WESTERN_CAPE_8, PATH_WESTERN_CAPE_9, PATH_WESTERN_CAPE_10], lx: 210, ly: 635, color: '#1a3d5a', hover: '#24527a' },
   { name: 'Free State', paths: [PATH_FREE_STATE_0], lx: 490, ly: 520, color: '#4a2d5a', hover: '#643d7a' },
-  { name: 'Gauteng', paths: [PATH_GAUTENG_0], lx: 575, ly: 295, color: '#5a1a1a', hover: '#7a2424' },
-  { name: 'KwaZulu-Natal', paths: [PATH_KWAZULU_NATAL_0], lx: 660, ly: 490, color: '#1a5a4a', hover: '#247a64' },
-  { name: 'Limpopo', paths: [PATH_LIMPOPO_0], lx: 565, ly: 175, color: '#3d4a1a', hover: '#52641a' },
-  { name: 'Mpumalanga', paths: [PATH_MPUMALANGA_0], lx: 645, ly: 315, color: '#4a3d1a', hover: '#645224' },
-  { name: 'North West', paths: [PATH_NORTH_WEST_0], lx: 460, ly: 300, color: '#1a4a5a', hover: '#24647a' },
+  { name: 'Gauteng', paths: [PATH_GAUTENG_0], lx: 596, ly: 320, color: '#5a1a1a', hover: '#7a2424' },
+  { name: 'KwaZulu-Natal', paths: [PATH_KWAZULU_NATAL_0], lx: 655, ly: 500, color: '#1a5a4a', hover: '#247a64' },
+  { name: 'Limpopo', paths: [PATH_LIMPOPO_0], lx: 555, ly: 200, color: '#3d4a1a', hover: '#52641a' },
+  { name: 'Mpumalanga', paths: [PATH_MPUMALANGA_0], lx: 660, ly: 345, color: '#4a3d1a', hover: '#645224' },
+  { name: 'North West', paths: [PATH_NORTH_WEST_0], lx: 445, ly: 315, color: '#1a4a5a', hover: '#24647a' },
 ]
 
 const BORDER_PATHS = [BORDER_0, BORDER_1, BORDER_2, BORDER_3, BORDER_4, BORDER_5, BORDER_6, BORDER_7, BORDER_8, BORDER_9, BORDER_10, BORDER_11, BORDER_12, BORDER_13, BORDER_14, BORDER_15, BORDER_16]

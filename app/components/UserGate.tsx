@@ -3,6 +3,12 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 
+interface Station {
+  code: string
+  name: string
+  province: string
+}
+
 const COOKIE_NAME = 'csza_user_registered'
 const COOKIE_DAYS = 365
 
@@ -25,25 +31,32 @@ export default function UserGate({ children }: Props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [precinct, setPrecinct] = useState('')
   const [marketing, setMarketing] = useState(true)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [stations, setStations] = useState<Station[]>([])
+  const [stationSearch, setStationSearch] = useState('')
 
   useEffect(() => {
-    // Check cookie — if already registered, don't show gate
     const existing = getCookie(COOKIE_NAME)
     if (!existing) {
-      // Small delay so page renders first
       const t = setTimeout(() => setShow(true), 800)
       return () => clearTimeout(t)
     }
   }, [])
 
+  useEffect(() => {
+    if (!show) return
+    supabase.from('stations').select('code,name,province').order('province').order('name').limit(1200)
+      .then(({ data }) => setStations(data || []))
+  }, [show])
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-    if (!name.trim() || !email.trim() || !phone.trim()) {
-      setError('Please fill in all fields.')
+    if (!name.trim() || !email.trim() || !phone.trim() || !precinct) {
+      setError('Please fill in all fields including your police precinct.')
       return
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -53,8 +66,13 @@ export default function UserGate({ children }: Props) {
     setLoading(true)
     try {
       await supabase.from('users').upsert(
-        { name: name.trim(), email: email.trim().toLowerCase(), phone: phone.trim(), marketing_opt_in: marketing },
+        { name: name.trim(), email: email.trim().toLowerCase(), phone: phone.trim(), precinct_code: precinct, marketing_opt_in: marketing },
         { onConflict: 'email' }
+      )
+      // Also subscribe them to their precinct alerts
+      await supabase.from('subscriptions').upsert(
+        { email: email.trim().toLowerCase(), station_code: precinct },
+        { onConflict: 'email,station_code' }
       )
       setCookie(COOKIE_NAME, email.trim().toLowerCase(), COOKIE_DAYS)
       setShow(false)
@@ -113,6 +131,34 @@ export default function UserGate({ children }: Props) {
                   required
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder-white/25 focus:outline-none focus:border-red-500 transition-colors"
                 />
+              </div>
+
+              <div>
+                <label className="text-xs text-white/50 uppercase tracking-wide mb-1.5 block">Your Police Precinct</label>
+                <input
+                  type="text"
+                  placeholder="Search your area..."
+                  value={stationSearch}
+                  onChange={e => setStationSearch(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder-white/25 focus:outline-none focus:border-red-500 transition-colors mb-1.5"
+                />
+                <select
+                  value={precinct}
+                  onChange={e => setPrecinct(e.target.value)}
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500 transition-colors"
+                >
+                  <option value="" className="bg-[#1a1a1a]">
+                    {stations.length === 0 ? 'Loading precincts...' : 'Select your precinct...'}
+                  </option>
+                  {stations
+                    .filter(s => !stationSearch || s.name.toLowerCase().includes(stationSearch.toLowerCase()) || s.province.toLowerCase().includes(stationSearch.toLowerCase()))
+                    .map(s => (
+                      <option key={s.code} value={s.code} className="bg-[#1a1a1a]">
+                        {s.name} ({s.province})
+                      </option>
+                    ))}
+                </select>
               </div>
 
               <label className="flex items-start gap-3 cursor-pointer group">

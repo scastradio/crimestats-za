@@ -91,8 +91,8 @@ export default function UserGate({ children }: Props) {
           <div className="bg-[#111] border border-white/10 rounded-2xl p-8 w-full max-w-md shadow-2xl">
             {/* Logo */}
             <div className="mb-6 text-center">
-              <h1 className="text-2xl font-bold text-white">CrimeStats <span className="text-red-500">ZA</span></h1>
-              <p className="text-white/40 text-sm mt-1">Free access to SA crime statistics</p>
+              <h1 className="text-2xl font-bold text-white">SafeStats <span className="text-red-500">ZA</span></h1>
+              <p className="text-white/40 text-sm mt-1">Free SA crime statistics · safestats.co.za</p>
             </div>
 
             <h2 className="text-lg font-semibold text-white mb-1">Create your free account</h2>

@@ -88,8 +88,8 @@ export default function HomePage() {
       {/* Header */}
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-white">CrimeStats <span className="text-red-500">ZA</span></h1>
-          <p className="text-xs text-white/40 mt-0.5">Real SAPS data · Free · Updated quarterly</p>
+          <h1 className="text-xl font-bold text-white">SafeStats <span className="text-red-500">ZA</span></h1>
+          <p className="text-xs text-white/40 mt-0.5">Real SAPS data · Free · safestats.co.za</p>
         </div>
         <a href="#alerts" className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-lg font-medium transition-colors">
           Get Alerts
@@ -245,7 +245,7 @@ export default function HomePage() {
       </section>
 
       <footer className="px-6 py-6 text-center text-white/20 text-xs border-t border-white/5">
-        CrimeStats ZA · Data sourced from SAPS official quarterly statistics · Not affiliated with SAPS
+        SafeStats ZA · Data sourced from SAPS official quarterly statistics · Not affiliated with SAPS
       </footer>
     </div>
   )

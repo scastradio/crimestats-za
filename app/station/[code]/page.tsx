@@ -196,7 +196,7 @@ export default function StationPage() {
       </main>
 
       <footer className="px-6 py-6 text-center text-white/20 text-xs border-t border-white/5">
-        CrimeStats ZA · Data sourced from SAPS official quarterly statistics
+        SafeStats ZA · Data sourced from SAPS official quarterly statistics
       </footer>
     </div>
   )

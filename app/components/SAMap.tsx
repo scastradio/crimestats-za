@@ -104,13 +104,6 @@ export default function SAMap({ onSelectProvince }: Props) {
                   stroke="#ffffff15" strokeWidth="0.5"
                   style={{transition:'fill 0.15s'}} />
               ))}
-              <text x={lx} y={ly} textAnchor="middle"
-                fill={hovered === name ? '#ffffff' : '#ffffffaa'}
-                fontSize={name === 'Gauteng' ? 11 : 13}
-                fontWeight={hovered === name ? 'bold' : 'normal'}
-                style={{pointerEvents:'none', userSelect:'none'}}>
-                {name}
-              </text>
             </g>
           ))}
           {BORDER_PATHS.map((d, i) => <path key={i} d={d} fill="none" stroke="#ffffff20" strokeWidth="0.8" style={{pointerEvents:'none'}} />)}
